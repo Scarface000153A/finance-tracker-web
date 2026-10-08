@@ -36,3 +36,6 @@ services:
     name: finance-tracker-frontend
     env: static
     rootDir: finance-tracker-web/frontend
+    envVars:
+      - key: API_BASE_URL
+        value: https://finance-tracker-api.onrender.com
