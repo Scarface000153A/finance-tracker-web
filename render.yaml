@@ -1,0 +1,48 @@
+# Render deployment configuration
+# https://render.com/docs/reference/blueprint-schema
+
+databases:
+  - name: finance-tracker-db
+    plan: free
+    databaseName: finance_tracker
+    postgresVersion: 14
+
+services:
+  # Backend API service
+  - type: web
+    name: finance-tracker-api
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000}
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.7
+      - key: DATABASE_URL
+        database: finance-tracker-db
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false
+      - key: BACKEND_CORS_ORIGINS
+        value:
+          - "http://localhost:8080"
+          - "https://finance-tracker-web.onrender.com"
+    healthCheckPath: /health
+    rootDir: finance-tracker-web/backend
+
+  # Frontend static site
+  - type: web
+    name: finance-tracker-frontend
+    env: static
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    buildFilter:
+      paths:
+        - frontend/**
+    routes:
+      - path: /*
+        serve: /frontend
+    rootDir: finance-tracker-web
