@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
     # CORS settings - stored as string, parsed to list via helper
-    BACKEND_CORS_ORIGINS: str = "http://localhost:3000,http://localhost:8080"
+    BACKEND_CORS_ORIGINS: str = "http://localhost:3000,http://localhost:8080,https://finance-tracker-frontend-ske1.onrender.com"
 
     class Config:
         env_file = ".env"

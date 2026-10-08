@@ -27,7 +27,7 @@ services:
       - key: DEBUG
         value: false
       - key: BACKEND_CORS_ORIGINS
-        value: "http://localhost:8080,https://finance-tracker-web.onrender.com"
+        value: "http://localhost:3000,http://localhost:8080,https://finance-tracker-frontend-ske1.onrender.com"
     healthCheckPath: /health
     rootDir: finance-tracker-web/backend
 
