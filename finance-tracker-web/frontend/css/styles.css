@@ -78,6 +78,14 @@ body {
 .nav-links a:hover {
   text-decoration: underline;
 }
+.nav-links .btn-secondary,
+.nav-links .btn-primary {
+  margin-right: 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  display: inline-block;
+  text-align: center;
+}
 
 /* ---------- Buttons ---------- */
 .btn-primary {
@@ -123,6 +131,123 @@ body {
 }
 .btn-icon:hover {
   background: var(--color-bg);
+}
+
+/* ---------- Hero Section ---------- */
+.hero {
+  padding: 4rem 0;
+}
+.hero .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+}
+.hero-image {
+  flex: 0 0 auto;
+  min-width: 260px;
+  max-width: 320px;
+}
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.btn-large {
+  padding: 0.85rem 1.75rem;
+  font-size: 1.05rem;
+}
+
+/* ---------- Stats Cards ---------- */
+.stats-card {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.stat {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow);
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.stat-value.positive {
+  color: var(--color-income);
+}
+
+/* ---------- Features Section ---------- */
+.features {
+  padding: 3rem 0;
+}
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.feature-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.feature-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+.feature-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.feature-card p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 /* ---------- Auth Pages ---------- */
