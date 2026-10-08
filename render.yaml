@@ -25,9 +25,7 @@ services:
       - key: DEBUG
         value: false
       - key: BACKEND_CORS_ORIGINS
-        value:
-          - "http://localhost:8080"
-          - "https://finance-tracker-web.onrender.com"
+        value: "http://localhost:8080,https://finance-tracker-web.onrender.com"
     healthCheckPath: /health
     rootDir: finance-tracker-web/backend
 
@@ -37,7 +35,6 @@ services:
     env: static
     region: oregon
     plan: free
-    buildCommand: npm install
     buildFilter:
       paths:
         - frontend/**
