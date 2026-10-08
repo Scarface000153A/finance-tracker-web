@@ -35,5 +35,4 @@ services:
   - type: web
     name: finance-tracker-frontend
     env: static
-    plan: free
     rootDir: finance-tracker-web/frontend
