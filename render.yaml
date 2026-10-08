@@ -32,10 +32,9 @@ services:
     rootDir: finance-tracker-web/backend
 
   # Frontend static site
-  - type: static
+  - type: web
     name: finance-tracker-frontend
-    region: oregon
-    plan: free
+    env: static
     rootDir: finance-tracker-web/frontend
     buildCommand: bash build.sh
     envVars:
