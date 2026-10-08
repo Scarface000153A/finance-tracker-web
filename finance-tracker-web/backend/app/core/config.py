@@ -1,5 +1,7 @@
 from pydantic_settings import BaseSettings
 from typing import Optional, List
+from pydantic import field_validator
+
 
 class Settings(BaseSettings):
     # Application settings
@@ -21,5 +23,14 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = True
+
+    @field_validator("BACKEND_CORS_ORIGINS", mode="before")
+    @classmethod
+    def parse_cors_origins(cls, v):
+        """Parse comma-separated string from env var into a list."""
+        if isinstance(v, str):
+            return [origin.strip() for origin in v.split(",") if origin.strip()]
+        return v
+
 
 settings = Settings()
