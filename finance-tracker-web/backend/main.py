@@ -13,7 +13,11 @@ async def lifespan(app: FastAPI):
     try:
         Base.metadata.create_all(bind=engine)
     except Exception as e:
-        print(f"Warning: Could not create database tables on startup: {e}")
+        # Ignore error if ENUM type already exists from previous deployment
+        import re
+        err_str = str(e)
+        if "pg_type_typname_nsp_index" not in err_str:
+            print(f"Warning: Could not create database tables on startup: {e}")
     yield
 
 
