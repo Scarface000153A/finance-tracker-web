@@ -35,10 +35,5 @@ services:
     env: static
     region: oregon
     plan: free
-    buildFilter:
-      paths:
-        - frontend/**
-    routes:
-      - path: /*
-        serve: /frontend
+    serve: /frontend
     rootDir: finance-tracker-web
