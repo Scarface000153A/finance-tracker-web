@@ -32,12 +32,12 @@ services:
     rootDir: finance-tracker-web/backend
 
   # Frontend static site
-  - type: web
+  - type: static
     name: finance-tracker-frontend
-    env: static
+    region: oregon
+    plan: free
     rootDir: finance-tracker-web/frontend
     buildCommand: bash build.sh
-    startCommand: python3 -m http.server 8080
     envVars:
       - key: API_BASE_URL
         value: https://finance-tracker-api.onrender.com
