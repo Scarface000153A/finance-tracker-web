@@ -5,7 +5,6 @@ databases:
   - name: finance-tracker-db
     plan: free
     databaseName: finance_tracker
-    postgresVersion: 14
 
 services:
   # Backend API service
