@@ -30,10 +30,13 @@ services:
     rootDir: finance-tracker-web/backend
 
   # Frontend static site
-  - type: web
+  - type: static_site
     name: finance-tracker-frontend
-    env: static
     region: oregon
     plan: free
-    serve: /frontend
-    rootDir: finance-tracker-web
+    buildCommand: echo "no build needed"
+    publishDir: finance-tracker-web/frontend
+    routes:
+      - type: redirect
+        from: "/*"
+        to: "/"
