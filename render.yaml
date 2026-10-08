@@ -19,7 +19,9 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.7
       - key: DATABASE_URL
-        database: finance-tracker-db
+        fromDatabase:
+          name: finance-tracker-db
+          property: connectionString
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
@@ -33,6 +35,5 @@ services:
   - type: web
     name: finance-tracker-frontend
     env: static
-    region: oregon
     plan: free
     rootDir: finance-tracker-web/frontend
