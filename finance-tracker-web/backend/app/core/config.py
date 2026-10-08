@@ -1,6 +1,5 @@
 from pydantic_settings import BaseSettings
-from typing import Optional, List
-from pydantic import field_validator
+from typing import Optional
 
 
 class Settings(BaseSettings):
@@ -17,20 +16,17 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
-    # CORS settings
-    BACKEND_CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:8080"]
+    # CORS settings - stored as string, parsed to list via helper
+    BACKEND_CORS_ORIGINS: str = "http://localhost:3000,http://localhost:8080"
 
     class Config:
         env_file = ".env"
         case_sensitive = True
 
-    @field_validator("BACKEND_CORS_ORIGINS", mode="before")
-    @classmethod
-    def parse_cors_origins(cls, v):
-        """Parse comma-separated string from env var into a list."""
-        if isinstance(v, str):
-            return [origin.strip() for origin in v.split(",") if origin.strip()]
-        return v
+
+def get_cors_origins() -> list[str]:
+    """Parse BACKEND_CORS_ORIGINS string into a list."""
+    return [origin.strip() for origin in settings.BACKEND_CORS_ORIGINS.split(",") if origin.strip()]
 
 
 settings = Settings()
