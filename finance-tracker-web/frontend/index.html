@@ -4,94 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance Tracker - Smart Money Management</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        'primary-hover': '#4338ca',
+                        surface: '#ffffff',
+                        bg: '#f5f6fa',
+                        muted: '#64748b',
+                        border: '#e2e8f0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #f5f6fa;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .blob-1 {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79,70,229,0.1) 0%, transparent 50%);
+            animation: float 20s infinite linear;
+        }
+        .blob-2 {
+            position: absolute;
+            bottom: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 50%);
+            animation: float 25s infinite linear reverse;
+        }
+        @keyframes float {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen relative overflow-hidden">
+    <!-- Background blobs -->
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
+
     <div id="app">
         <!-- Navigation -->
-        <nav class="navbar">
-            <div class="container">
-                <div class="nav-brand">
-                    <h1>💰 Finance Tracker</h1>
-                </div>
-                <div class="nav-links">
-                    <a href="#features">Features</a>
-                    <a href="#about">About</a>
-                    <a href="login.html" class="btn-secondary">Login</a>
-                    <a href="signup.html" class="btn-primary">Get Started</a>
+        <nav class="navbar py-4">
+            <div class="container mx-auto px-4 flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 text-2xl font-bold text-gray-800">
+                    <span class="text-3xl">💰</span>
+                    <span>Finance Tracker</span>
+                </a>
+                <div class="flex items-center gap-4">
+                    <a href="#features" class="text-gray-600 hover:text-indigo-600 font-medium transition">Features</a>
+                    <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium transition">About</a>
+                    <a href="login.html" class="text-indigo-600 font-medium hover:text-indigo-500 transition">Log in</a>
+                    <a href="signup.html" class="text-white bg-indigo-600 hover:bg-indigo-700 font-semibold py-2.5 px-5 rounded-lg transition flex items-center justify-center">
+                        Get Started
+                    </a>
                 </div>
             </div>
         </nav>
 
         <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">Take Control of Your Finances</h1>
-                    <p class="hero-subtitle">Track expenses, manage income, and achieve your financial goals with our intuitive finance tracker.</p>
-                    <div class="hero-buttons">
-                        <a href="signup.html" class="btn-primary btn-large">Start Free Today</a>
-                        <a href="#features" class="btn-secondary btn-large">Learn More</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="stats-card">
-                        <div class="stat">
-                            <span class="stat-label">Total Balance</span>
-                            <span class="stat-value">$12,450</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">This Month</span>
-                            <span class="stat-value positive">+$2,340</span>
+        <section class="hero py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="flex-1 min-w-[300px]">
+                        <h1 class="text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                            Take Control of Your Finances
+                        </h1>
+                        <p class="text-xl text-gray-600 mb-8">
+                            Track expenses, manage income, and achieve your financial goals with our intuitive finance tracker.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="signup.html" class="btn-primary text-white font-semibold py-3 px-8 rounded-lg shadow-lg flex items-center justify-center">
+                                Start Free Today
+                            </a>
+                            <a href="#features" class="text-indigo-600 font-medium hover:text-indigo-500 transition">
+                                Learn More →
+                            </a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="features">
-            <div class="container">
-                <h2 class="section-title">Everything You Need to Manage Your Money</h2>
-                <div class="features-grid">
-                    <div class="feature-card" v-for="feature in features" :key="feature.id">
-                        <div class="feature-icon">{{ feature.icon }}</div>
-                        <h3>{{ feature.title }}</h3>
-                        <p>{{ feature.description }}</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <h2 class="section-title">Why Choose Finance Tracker?</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>Simple, Secure, and Powerful</h3>
-                        <p>Built with modern technology and security best practices, Finance Tracker helps you stay on top of your financial health. Track every dollar, understand your spending patterns, and make informed financial decisions.</p>
-                        <ul class="benefits-list">
-                            <li>✓ Bank-level security with encrypted data</li>
-                            <li>✓ Real-time synchronization across devices</li>
-                            <li>✓ Detailed reports and analytics</li>
-                            <li>✓ No hidden fees or subscriptions</li>
-                        </ul>
-                    </div>
-                    <div class="about-image">
-                        <div class="dashboard-preview">
-                            <div class="preview-header">
-                                <span class="preview-dot"></span>
-                                <span class="preview-dot"></span>
-                                <span class="preview-dot"></span>
-                            </div>
-                            <div class="preview-content">
-                                <div class="preview-chart"></div>
-                                <div class="preview-stats">
-                                    <div class="preview-stat-bar"></div>
-                                    <div class="preview-stat-bar"></div>
-                                    <div class="preview-stat-bar"></div>
+                    <div class="flex-0 min-w-[280px] w-full max-w-md">
+                        <div class="stat-card">
+                            <div class="stat-summary flex gap-4 flex-wrap">
+                                <div class="stat flex-1 min-w-[120px]">
+                                    <div class="stat-value font-bold text-lg text-gray-900 mb-1">$12,450</div>
+                                    <div class="stat-label text-xs text-gray-500 uppercase">Total Balance</div>
+                                </div>
+                                <div class="stat flex-1 min-w-[120px]">
+                                    <div class="stat-value font-bold text-lg text-green-600 mb-1">+$2,340</div>
+                                    <div class="stat-label text-xs text-gray-500 uppercase">This Month</div>
                                 </div>
                             </div>
                         </div>
@@ -100,23 +177,88 @@
             </div>
         </section>
 
+        <!-- Features Section -->
+        <section id="features" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Everything You Need to Manage Your Money</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div v-for="feature in features" :key="feature.id" class="feature-card">
+                        <div class="text-3xl mb-3">{{ feature.icon }}</div>
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">{{ feature.title }}</h3>
+                        <p class="text-gray-600 text-sm">{{ feature.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 bg-white/50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Why Choose Finance Tracker?</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-center mb-10">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Simple, Secure, and Powerful</h3>
+                        <p class="text-gray-600">
+                            Built with modern technology and security best practices, Finance Tracker helps you stay on top of your financial health.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                        <div class="feature-card">
+                            <div class="flex items-start gap-3">
+                                <div class="text-2xl">🔒</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Bank-Level Security</h4>
+                                    <p class="text-sm text-gray-600">End-to-end encryption with JWT authentication and bcrypt password hashing.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="flex items-start gap-3">
+                                <div class="text-2xl">📊</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Real-Time Sync</h4>
+                                    <p class="text-sm text-gray-600">Access your data from anywhere, anytime, on any device.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-center">
+                        <li class="flex items-center justify-center gap-2 text-gray-700">
+                            <span class="text-green-500">✓</span>
+                            <span>Real-time analytics and reports</span>
+                        </li>
+                        <li class="flex items-center justify-center gap-2 text-gray-700">
+                            <span class="text-green-500">✓</span>
+                            <span>No hidden fees or subscriptions</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA Section -->
-        <section class="cta">
-            <div class="container">
-                <h2>Ready to Get Started?</h2>
-                <p>Join thousands of users who are already managing their finances better.</p>
-                <a href="signup.html" class="btn-primary btn-large">Create Free Account</a>
+        <section class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="cta-section">
+                    <h2 class="text-2xl font-bold text-white mb-3">Ready to Get Started?</h2>
+                    <p class="text-indigo-100 mb-6">Join thousands of users who are already managing their finances better.</p>
+                    <a href="signup.html" class="btn-primary text-white font-semibold py-3 px-8 rounded-lg shadow-lg flex items-center justify-center">
+                        Create Free Account
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <p>&copy; 2026 Finance Tracker. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Contact</a>
+        <footer class="py-6 bg-white border-t border-gray-200">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                    <p class="text-gray-500 text-sm">&copy; 2026 Finance Tracker. All rights reserved.</p>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-gray-500 hover:text-indigo-600 text-sm transition">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-indigo-600 text-sm transition">Terms of Service</a>
+                        <a href="#" class="text-gray-500 hover:text-indigo-600 text-sm transition">Contact</a>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -125,22 +267,21 @@
     <script src="js/config.js"></script>
     <script src="js/api.js"></script>
     <script>
-      // Home page - simple Vue app for landing
-      const { createApp } = Vue;
-      createApp({
-        data() {
-          return {
-            features: [
-              { id: 1, icon: '💰', title: 'Track Income & Expenses', description: 'Record every transaction with categories and descriptions.' },
-              { id: 2, icon: '📊', title: 'Real-time Analytics', description: 'View your balance, income, and expenses at a glance.' },
-              { id: 3, icon: '🔐', title: 'Secure Authentication', description: 'JWT-based auth with bcrypt password hashing.' },
-              { id: 4, icon: '📱', title: 'Responsive Design', description: 'Works on desktop, tablet, and mobile devices.' },
-              { id: 5, icon: '⚡', title: 'Fast & Lightweight', description: 'Built with Vue.js 3 for a snappy user experience.' },
-              { id: 6, icon: '🔧', title: 'Easy to Customize', description: 'Open source and modular for your needs.' },
-            ],
-          };
-        },
-      }).mount('#app');
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    features: [
+                        { id: 1, icon: '💰', title: 'Track Income & Expenses', description: 'Record every transaction with categories and descriptions.' },
+                        { id: 2, icon: '📊', title: 'Real-time Analytics', description: 'View your balance, income, and expenses at a glance.' },
+                        { id: 3, icon: '🔐', title: 'Secure Authentication', description: 'JWT-based auth with bcrypt password hashing.' },
+                        { id: 4, icon: '📱', title: 'Responsive Design', description: 'Works on desktop, tablet, and mobile devices.' },
+                        { id: 5, icon: '⚡', title: 'Fast & Lightweight', description: 'Built with Vue.js 3 for a snappy user experience.' },
+                        { id: 6, icon: '🔧', title: 'Easy to Customize', description: 'Open source and modular for your needs.' },
+                    ],
+                };
+            },
+        }).mount('#app');
     </script>
 </body>
 </html>
