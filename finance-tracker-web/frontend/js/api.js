@@ -1,4 +1,4 @@
-// API Base URL — uses Render-injected env var in production, falls back to localhost for dev
+// API Base URL — uses environment variable in production, falls back to localhost for dev
 const API_BASE_URL = window.env?.API_BASE_URL || 'http://localhost:8000';
 
 /**
